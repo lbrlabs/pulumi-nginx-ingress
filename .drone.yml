@@ -1,0 +1,18 @@
+---
+kind: pipeline
+type: kubernetes
+name: default
+
+steps:
+- name: preview
+  image: pulumi/pulumi:latest
+  commands:
+    - npm ci
+    - pulumi preview --stack digitalocean --non-interactive
+  environment:
+    PULUMI_ACCESS_TOKEN:
+      from_secret: pulumi_access_token
+  when:
+    event:
+      include:
+        - pull_request
