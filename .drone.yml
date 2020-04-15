@@ -1,10 +1,10 @@
 ---
 kind: pipeline
 type: kubernetes
-name: preview
+name: digitalocean
 
 steps:
-- name: digitalocean
+- name: preview
   image: pulumi/pulumi:latest
   commands:
     - npm ci
@@ -16,7 +16,14 @@ steps:
     event:
       include:
         - pull_request
-- name: homelab
+
+---
+kind: pipeline
+type: kubernetes
+name: homelab
+
+steps:
+- name: preview
   image: pulumi/pulumi:latest
   commands:
     - npm ci
