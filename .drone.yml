@@ -27,7 +27,11 @@ steps:
     PULUMI_ACCESS_TOKEN:
       from_secret: pulumi-token
   when:
+    event:
+      exclude:
+      - pull_request
     branch:
+      include:
       - master
 
 ---
@@ -59,6 +63,9 @@ steps:
     PULUMI_ACCESS_TOKEN:
       from_secret: pulumi-token
   when:
+    event:
+      exclude:
+      - pull_request
     branch:
       - master
 ---
