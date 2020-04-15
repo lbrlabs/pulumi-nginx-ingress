@@ -17,6 +17,7 @@ const provider = new k8s.Provider("k8s", { kubeconfig: cluster.getOutput("kubeCo
 const ns = config.get("namespace") || "nginx-ingress"
 const cert = config.require("cert")
 const key = config.require("key")
+const replicas = config.getNumber("replicas") || 2
 
 const namespace = new k8s.core.v1.Namespace("ns", {
     metadata: {
@@ -45,7 +46,7 @@ const nginx = new k8s.helm.v2.Chart("nginx-ingress",
         fetchOpts: { repo: "https://kubernetes-charts.storage.googleapis.com/" },
         values: {
             controller: {
-                replicaCount: 2,
+                replicaCount: replicas,
                 service: {
                     type: "LoadBalancer",
                 },
