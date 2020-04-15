@@ -74,3 +74,8 @@ name: pulumi-token
 get:
   path: pulumi-token
   name: token
+---
+kind: signature
+hmac: 27321727bc651a16ba132a1e022134aacb69dec784a7c1b4a5575967813577b4
+
+...
