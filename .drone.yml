@@ -3,6 +3,8 @@ kind: pipeline
 type: kubernetes
 name: digitalocean
 
+
+
 steps:
 - name: preview
   image: pulumi/pulumi:latest
