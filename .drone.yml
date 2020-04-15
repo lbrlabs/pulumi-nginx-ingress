@@ -11,7 +11,7 @@ steps:
     - pulumi preview --stack digitalocean --non-interactive
   environment:
     PULUMI_ACCESS_TOKEN:
-      from_secret: pulumi_acces_token
+      from_secret: pulumi_access_token
   when:
     event:
       include:
