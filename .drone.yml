@@ -14,8 +14,21 @@ steps:
       from_secret: pulumi-token
   when:
     event:
+      exclude:
+        - push
       include:
         - pull_request
+- name: apply
+  imahe: pulumi/pulumi:latest
+  commands:
+    - npm ci
+    - pulumi up --stack digitalocean --non-interactive
+  environment:
+    PULUMI_ACCESS_TOKEN:
+      from_secret: pulumi-token
+  when:
+    branch:
+      - master
 
 ---
 kind: pipeline
@@ -33,8 +46,21 @@ steps:
       from_secret: pulumi-token
   when:
     event:
+      exclude:
+        - push
       include:
         - pull_request
+- name: apply
+  imahe: pulumi/pulumi:latest
+  commands:
+    - npm ci
+    - pulumi up --stack homelab --non-interactive
+  environment:
+    PULUMI_ACCESS_TOKEN:
+      from_secret: pulumi-token
+  when:
+    branch:
+      - master
 ---
 kind: secret
 name: pulumi-token
